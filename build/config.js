@@ -5,12 +5,18 @@ exports.CONFIG = {
 	* js, css, images etc.
 	*/
 	assetFolder: "/assets",
-	
+
 	/**
 	* The folder that contains all html
 	* documents
 	*/
 	pagesFolder: "../pages",
+
+	/**
+	* A folder with static html
+	* templates
+	*/
+	templateFolder: "../templates/",
 
 	/**
 	* The port the development server

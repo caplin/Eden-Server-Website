@@ -1,22 +1,24 @@
-exports.parsePageParams = function( oRequest, oResponse, next )
+/**
+* Serves favicon requests
+*
+* change to oResponse.sendfile( sFaviconPath ) as soon as available
+*/
+exports.sendFavicon = function( oRequest, oResponse, next )
 {
-	if( !oRequest.params )
-	{
-		oResponse.locals.page = "";
-		next();
-	}
-	
-	oResponse.locals.page = oRequest.params.page.split( "." )[ 0 ];
+	oResponse.send( 404, "Favicon not found" );
+};
 
-	if( oResponse.locals.page === "/" )
-	{
-		oResponse.locals.page = "index";
-	}
-
-	oResponse.locals.contentId = oRequest.params.content;
+/**
+* Adds a category index for the
+* requested page
+*/
+exports.addIndex = function( oRequest, oResponse, next )
+{
+	var sPage = oRequest.params.page;
 
 	next();
 };
+
 
 exports.send = function( oRequest, oResponse )
 {
@@ -32,5 +34,7 @@ exports.send = function( oRequest, oResponse )
 		}
 	};
 
-	oResponse.render( oResponse.locals.page, fSend );
+	var sPage = oRequest.params ? oRequest.params.page : "index";
+
+	oResponse.render( sPage, fSend );
 };

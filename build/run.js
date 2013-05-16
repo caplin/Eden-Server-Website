@@ -1,8 +1,14 @@
 var express = require( 'express' );
 var app = express();
-var CONF = require( './config.js' ).CONFIG;
 var colors = require( 'colors' );
 var tasks = require( "./src/tasks.js" );
+var hbs = require( 'hbs' );
+var templateHelper = require( './src/templateHelper.js' );
+
+/**
+* Global CONF object
+*/
+CONF = require( './config.js' ).CONFIG;
 
 /**
 * Add directory listing and browsing
@@ -17,6 +23,14 @@ app.use( express.directory( CONF.assetFolder ) );
 app.use( express.static( CONF.assetFolder ) );
 
 /**
+* Register all handlebar template helper
+*/
+for( var sTemplateName in templateHelper )
+{
+	hbs.registerHelper( sTemplateName, templateHelper[ sTemplateName ] );
+}
+
+/**
 * We'll use plain HTML for the views. All
 * markdown will be parsed and passed on as html
 */
@@ -25,7 +39,7 @@ app.set( 'view engine', 'html' );
 /**
 * Using Handlebars templating
 */
-app.engine( 'html', require('hbs').__express );
+app.engine( 'html', hbs.__express );
 
 /**
 * Top level views are html templates
@@ -36,12 +50,17 @@ app.set( "views", CONF.pagesFolder );
 /**
 * Extract the page and content parameters
 */
-app.use( tasks.parsePageParams );
+app.get( "/:page", tasks.addIndex, tasks.send );
+
+/**
+* Send out favicons - yehaa
+*/
+app.get( "/favicon.ico", tasks.sendFavicon );
 
 /**
 * Add handling for the pages folder
 */
-app.get( "/:page/:content", tasks.send );
+app.get( "*", tasks.send );
 
 /**
 * Start the app on port 3000
