@@ -1,0 +1,16 @@
+<ul id="toc">
+	{{#each index}}
+		<li>
+			<a href="/{{../page}}/{{toURL title}}" title="{{title}}">{{this.title}}</a>
+			{{#if content}}
+				<ul class="content">
+					{{#each content}}
+						<li>
+							<a href="/{{../../../page}}/{{toURL ../title}}#{{toURL this}}">{{this}}</a>
+						</li>
+					{{/each}}
+				</ul>
+			{{/if}}
+		</li>
+	{{/each}}
+</ul>
