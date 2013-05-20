@@ -56,7 +56,7 @@ app.set( "views", CONF.pagesFolder );
 /**
 * Extract the page and content parameters
 */
-app.get( "/:page", tasks.addIndex, tasks.send );
+app.get( "/:page", tasks.addViewParams, tasks.addIndex, tasks.send );
 
 /**
 * Send out favicons - yehaa
