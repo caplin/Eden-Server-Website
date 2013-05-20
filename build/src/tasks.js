@@ -1,3 +1,7 @@
+var tools = require( "./tools.js" );
+var path = require( "path" );
+var marked = require( "marked" );
+
 /**
 * Serves favicon requests
 *
@@ -14,9 +18,20 @@ exports.sendFavicon = function( oRequest, oResponse, next )
 */
 exports.addIndex = function( oRequest, oResponse, next )
 {
-	var sPage = oRequest.params.page;
 
-	next();
+	var sDirPath = path.join( SERVER_ROOT, CONF.contentFolder, oRequest.params.page );
+
+	var fToHtml = function( oError, pContents )
+	{
+		for( var i = 0; i < pContents.length; i++ )
+		{
+			console.log( marked( pContents[ i ] ) );
+		}
+
+		next();
+	};
+
+	tools.getDirContents( sDirPath, fToHtml );
 };
 
 
