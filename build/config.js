@@ -13,6 +13,11 @@ exports.CONFIG = {
 	pagesFolder: "../pages",
 
 	/**
+	* The folder that contains the markdown documents
+	*/
+	contentFolder: "../content",
+
+	/**
 	* A folder with static html
 	* templates
 	*/
