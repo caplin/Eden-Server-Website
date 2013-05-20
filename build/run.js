@@ -6,6 +6,12 @@ var hbs = require( 'hbs' );
 var templateHelper = require( './src/templateHelper.js' );
 
 /**
+* The root directory. All paths in the config
+* are relative to this
+*/
+SERVER_ROOT = __dirname;
+
+/**
 * Global CONF object
 */
 CONF = require( './config.js' ).CONFIG;
