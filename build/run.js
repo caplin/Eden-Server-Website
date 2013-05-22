@@ -54,19 +54,24 @@ app.engine( 'html', hbs.__express );
 app.set( "views", CONF.pagesFolder );
 
 /**
-* Extract the page and content parameters
+* Route requests to / to index
+*/
+app.get( "/", tasks.addViewParams, tasks.mdToData, tasks.send );
+
+/**
+* Route requests to /docs, /examples etc.
 */
 app.get( "/:page", tasks.addViewParams, tasks.addIndex, tasks.send );
+
+/**
+* Route requests to /docs/sometitle etc.
+*/
+app.get( "/:page/:content", tasks.addViewParams, tasks.addIndex, tasks.send );
 
 /**
 * Send out favicons - yehaa
 */
 app.get( "/favicon.ico", tasks.sendFavicon );
-
-/**
-* Add handling for the pages folder
-*/
-app.get( "*", tasks.send );
 
 /**
 * Start the app on port 3000
