@@ -1,6 +1,32 @@
 var tools = require( "./tools.js" );
 var path = require( "path" );
 var marked = require( "marked" );
+var hbs = require( "hbs" );
+
+/**
+* Turns a markdown document into a key/value
+* map where key = h2 and value = following paragraph
+*/
+exports.mdToData = function( oRequest, oResponse, fNext )
+{
+	var fOnContent = function( sContent )
+	{
+		var pSegments = marked( sContent ).split( /<\/*h[1|2]>/ );
+
+		for( var i = 1; i < pSegments.length; i+=2 )
+		{
+			oResponse.locals[ pSegments[ i ].trim().replace( " ", "_" ) ] =
+			{
+				title: new hbs.handlebars.SafeString( pSegments[ i ].trim() ),
+				content: new hbs.handlebars.SafeString( pSegments[ i + 1 ].trim() )
+			};
+		}
+
+		fNext();
+	};
+
+	tools.loadContent( oResponse, fOnContent );
+};
 
 /**
 * Serves favicon requests
@@ -17,7 +43,33 @@ exports.sendFavicon = function( oRequest, oResponse, next )
 */
 exports.addViewParams = function( oRequest, oResponse, fNext )
 {
-	oResponse.locals.page = oRequest.params.page;
+	/**
+	* Request "/"
+	*/
+	if( !oRequest.params.page )
+	{
+		oResponse.locals.page = "index";
+		oResponse.locals.content = "index";
+	}
+
+	/**
+	* Request "/docs"
+	*/
+	else if( oRequest.params.page && !oRequest.params.page )
+	{
+		oResponse.locals.page = oRequest.params.page;
+		oResponse.locals.content = "index";
+	}
+
+	/**
+	* Request "/docs/ClientJs"
+	*/
+	else
+	{
+		oResponse.locals.page = oRequest.params.page;
+		oResponse.locals.content = oRequest.params.content;
+	}
+
 	fNext();
 };
 
@@ -80,7 +132,7 @@ exports.addIndex = function( oRequest, oResponse, next )
 		}
 
 		oResponse.locals.index = pResult;
-		
+
 
 		next();
 	};
@@ -103,7 +155,5 @@ exports.send = function( oRequest, oResponse )
 		}
 	};
 
-	var sPage = oRequest.params ? oRequest.params.page : "index";
-
-	oResponse.render( sPage, fSend );
+	oResponse.render( oResponse.locals.page, fSend );
 };
