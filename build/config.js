@@ -4,7 +4,7 @@ exports.CONFIG = {
 	* The root folder for static assets, such as
 	* js, css, images etc.
 	*/
-	assetFolder: "/assets",
+	assetFolder: "../assets",
 
 	/**
 	* The folder that contains all html
@@ -22,6 +22,12 @@ exports.CONFIG = {
 	* templates
 	*/
 	templateFolder: "../templates/",
+
+	/**
+	* The file extension
+	* for content files
+	*/
+	contentFileExt: ".md",
 
 	/**
 	* The port the development server

@@ -42,6 +42,9 @@ exports.getDirContents = function( sPath, fCallback, bSkipIndex )
 * document could be found
 *
 * Only calls the callback on success
+*
+* @param {express.Response} oResponse
+* @param {FUNCTION} fCallback Will be called with sContent, won't be called if in error
 */
 exports.loadContent = function( oResponse, fCallback )
 {

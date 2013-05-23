@@ -2,6 +2,13 @@ var fs = require( "fs" );
 var path = require( "path" );
 var hbs = require( 'hbs' );
 
+/**
+* Synchronously reads a file in the template folder
+* and compiles it as a handlebar template using vData as context
+*
+* @param {STRING} sPath the path to the file, relative to CONF.templateFolder
+* @param {MAP} vData the context for the template. OPTIONAL
+*/
 exports.template = function( sPath, vData )
 {
 	var sTemplate = fs.readFileSync( path.join( CONF.templateFolder, sPath ), "utf8" );
@@ -14,7 +21,12 @@ exports.template = function( sPath, vData )
 	return new hbs.handlebars.SafeString( sTemplate );
 };
 
-exports.toURL = function( sPath )
+/**
+* Encodes a string to be used in an URL
+*
+* @param {STRING} sInput The string to be encoded
+*/
+exports.toURL = function( sInput )
 {
-	return encodeURIComponent( sPath );
+	return encodeURIComponent( sInput );
 };
