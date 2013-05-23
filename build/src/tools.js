@@ -5,8 +5,11 @@ var path = require( "path" );
 /**
 * Non-recoursively reads a directory
 * and returns the file contents as an array
+*
+* @param {STRING} sPath the path to the folder, can be relative or absolute
+* @param {FUNCTION} fCallback Will be called with ( oError, pFileNames )
 */
-exports.getDirContents = function( sPath, fCallback )
+exports.getDirContents = function( sPath, fCallback, bSkipIndex )
 {
 	var fReadFile = function( sFileName, fFileCallback )
 	{
@@ -21,6 +24,11 @@ exports.getDirContents = function( sPath, fCallback )
 		}
 		else
 		{
+			if( bSkipIndex === true )
+			{
+				pFileNames.splice( pFileNames.indexOf( "index.md" ), 1 );
+			}
+
 			async.map( pFileNames, fReadFile, fCallback );
 		}
 	};

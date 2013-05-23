@@ -137,7 +137,7 @@ exports.addIndex = function( oRequest, oResponse, next )
 		next();
 	};
 
-	tools.getDirContents( sDirPath, fParse );
+	tools.getDirContents( sDirPath, fParse, true );
 };
 
 
