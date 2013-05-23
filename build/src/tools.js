@@ -7,7 +7,7 @@ var path = require( "path" );
 * and returns the file contents as an array
 *
 * @param {STRING} sPath the path to the folder, can be relative or absolute
-* @param {FUNCTION} fCallback Will be called with ( oError, pFileNames )
+* @param {FUNCTION} fCallback Will be called with ( oError, pContent, pFileNames )
 */
 exports.getDirContents = function( sPath, fCallback, bSkipIndex )
 {
@@ -29,7 +29,12 @@ exports.getDirContents = function( sPath, fCallback, bSkipIndex )
 				pFileNames.splice( pFileNames.indexOf( "index.md" ), 1 );
 			}
 
-			async.map( pFileNames, fReadFile, fCallback );
+			var fAddFileNames = function( oError, pContent )
+			{
+				fCallback( oError, pContent, pFileNames );
+			};
+
+			async.map( pFileNames, fReadFile, fAddFileNames );
 		}
 	};
 

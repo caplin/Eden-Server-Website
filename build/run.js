@@ -20,13 +20,13 @@ CONF = require( './config.js' ).CONFIG;
 * Add directory listing and browsing
 * to the asset directory
 */
-app.use( express.directory( CONF.assetFolder ) );
+app.use( "/assets", express.directory( CONF.assetFolder ) );
 
 /**
 * Serve everything within the assets folder as
 * a static file
 */
-app.use( express.static( CONF.assetFolder ) );
+app.use( "/assets", express.static( CONF.assetFolder ) );
 
 /**
 * Register all handlebar template helper
@@ -61,12 +61,12 @@ app.get( "/", tasks.addViewParams, tasks.mdToData, tasks.send );
 /**
 * Route requests to /docs, /examples etc.
 */
-app.get( "/:page", tasks.addViewParams, tasks.addIndex, tasks.send );
+app.get( "/:page", tasks.addViewParams, tasks.loadContent, tasks.addIndex, tasks.send );
 
 /**
 * Route requests to /docs/sometitle etc.
 */
-app.get( "/:page/:content", tasks.addViewParams, tasks.addIndex, tasks.send );
+app.get( "/:page/:content", tasks.addViewParams, tasks.loadContent, tasks.addIndex, tasks.send );
 
 /**
 * Send out favicons - yehaa

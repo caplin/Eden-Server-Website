@@ -29,6 +29,21 @@ exports.mdToData = function( oRequest, oResponse, fNext )
 };
 
 /**
+* Loads the main content markdown file and converts it to html
+*/
+exports.loadContent = function( oRequest, oResponse, fNext )
+{
+	var fOnContent = function( sContent )
+	{
+		var sHtml = marked( sContent );
+		oResponse.locals.content = new hbs.handlebars.SafeString( sHtml );
+		fNext();
+	};
+
+	tools.loadContent( oResponse, fOnContent );
+};
+
+/**
 * Serves favicon requests
 *
 * change to oResponse.sendfile( sFaviconPath ) as soon as available
@@ -55,9 +70,9 @@ exports.addViewParams = function( oRequest, oResponse, fNext )
 	/**
 	* Request "/docs"
 	*/
-	else if( oRequest.params.page && !oRequest.params.page )
+	else if( oRequest.params.page && !oRequest.params.content )
 	{
-		oResponse.locals.page = oRequest.params.page;
+		oResponse.locals.page = decodeURIComponent( oRequest.params.page );
 		oResponse.locals.content = "index";
 	}
 
@@ -66,8 +81,8 @@ exports.addViewParams = function( oRequest, oResponse, fNext )
 	*/
 	else
 	{
-		oResponse.locals.page = oRequest.params.page;
-		oResponse.locals.content = oRequest.params.content;
+		oResponse.locals.page = decodeURIComponent( oRequest.params.page );
+		oResponse.locals.content = decodeURIComponent( oRequest.params.content );
 	}
 
 	fNext();
@@ -94,7 +109,7 @@ exports.addIndex = function( oRequest, oResponse, next )
 	*/
 	sDirPath = path.join( SERVER_ROOT, CONF.contentFolder, oRequest.params.page );
 
-	var fParse = function( oError, pContents )
+	var fParse = function( oError, pContents, pFileNames )
 	{
 		if( oError )
 		{
@@ -122,7 +137,7 @@ exports.addIndex = function( oRequest, oResponse, next )
 						pResult.push( mEntry );
 					}
 
-					mEntry = { title: pHeading[ 2 ], content: [] };
+					mEntry = { title: pHeading[ 2 ], content: [], file: pFileNames[ i ].replace( CONF.contentFileExt, "" ) };
 				}
 				else
 				{
