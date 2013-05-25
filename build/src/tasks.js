@@ -94,6 +94,11 @@ exports.addViewParams = function( oRequest, oResponse, fNext )
 		oResponse.locals.content = tools.niceUrlDecode( oRequest.params.content );
 	}
 
+	/**
+	* Expose config parameters to the view
+	*/
+	oResponse.locals.cssFiles = CONF.cssFiles;
+
 	fNext();
 };
 

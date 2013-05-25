@@ -1,6 +1,15 @@
 exports.CONFIG = {
 
 	/**
+	* A list of the required css files. This will be used to create
+	* individual includes in served mode and bundled files in build
+	* mode
+	*/
+	cssFiles: [
+		"/assets/css/main.css"
+	],
+
+	/**
 	* The root folder for static assets, such as
 	* js, css, images etc.
 	*/

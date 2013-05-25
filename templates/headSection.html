@@ -2,4 +2,8 @@
 <html>
 <head>
 	<title>Eden Server - {{page}}</title>
+
+	{{#each cssFiles}}
+		<link href="{{this}}" rel="stylesheet" type="text/css" />
+	{{/each}}
 </head>
