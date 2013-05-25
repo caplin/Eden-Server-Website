@@ -1,0 +1,32 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+body{
+	font: 11px/16px Arial, sans-serif;
+	color: #333;
+}
+
+h2 a{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+a:active,a:target{
+	color:orange;
+}
+
+ul#toc{
+	margin: 10px 0;
+}
+
+ul#toc ul{
+	margin-left: 10px;
+}
+
+ul#toc ul li a{
+	cursor: pointer;
+	text-decoration: underline;
+}
