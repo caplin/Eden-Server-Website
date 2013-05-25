@@ -98,6 +98,7 @@ exports.addViewParams = function( oRequest, oResponse, fNext )
 	* Expose config parameters to the view
 	*/
 	oResponse.locals.cssFiles = CONF.cssFiles;
+	oResponse.locals.jsFiles = CONF.jsFiles;
 
 	fNext();
 };

@@ -10,6 +10,15 @@ exports.CONFIG = {
 	],
 
 	/**
+	* A list of the required js files. This will be used to create
+	* individual includes in served mode and bundled files in build
+	* mode
+	*/
+	jsFiles: [
+		"/assets/js/thirdparty/three.js"
+	],
+
+	/**
 	* The root folder for static assets, such as
 	* js, css, images etc.
 	*/

@@ -18,15 +18,15 @@ a:active,a:target{
 	color:orange;
 }
 
-ul#toc{
+#toc{
 	margin: 10px 0;
 }
 
-ul#toc ul{
+#toc ul{
 	margin-left: 10px;
 }
 
-ul#toc ul li a{
+#toc ul li a{
 	cursor: pointer;
 	text-decoration: underline;
 }
