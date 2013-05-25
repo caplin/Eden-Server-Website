@@ -2,6 +2,7 @@ var tools = require( "./tools.js" );
 var path = require( "path" );
 var marked = require( "marked" );
 var hbs = require( "hbs" );
+var htmlDecorator = require( "./htmlDecorator.js" );
 
 /**
 * Turns a markdown document into a key/value
@@ -35,8 +36,16 @@ exports.loadContent = function( oRequest, oResponse, fNext )
 {
 	var fOnContent = function( sContent )
 	{
-		var sHtml = marked( sContent );
+		var sHtml = marked( sContent ), oRegExp;
+
+		for( var sTagName in htmlDecorator )
+		{
+			oRegExp = new RegExp( "<" + sTagName + ">(.*)<\/" + sTagName + ">", "g" );
+			sHtml = sHtml.replace( oRegExp, htmlDecorator[ sTagName ] );
+		}
+
 		oResponse.locals.content = new hbs.handlebars.SafeString( sHtml );
+
 		fNext();
 	};
 
