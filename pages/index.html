@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Eden Server</title>
-	</head>
-	<body>
-		{{template "header.html"}}
-		<h1>{{Overview.title}}</h1>
-		{{Overview.content}}
+{{template "headSection.html" this}}
 
-		<h2>{{Starting_the_server.title}}</h2>
-		{{Starting_the_server.content}}
-	</body>
-</html>
+{{template "header.html"}}
+<h1>{{Overview.title}}</h1>
+{{Overview.content}}
+
+<h2>{{Starting_the_server.title}}</h2>
+{{Starting_the_server.content}}
+
+{{template "footer.html" this}}
