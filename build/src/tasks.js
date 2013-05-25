@@ -72,7 +72,7 @@ exports.addViewParams = function( oRequest, oResponse, fNext )
 	*/
 	else if( oRequest.params.page && !oRequest.params.content )
 	{
-		oResponse.locals.page = decodeURIComponent( oRequest.params.page );
+		oResponse.locals.page = tools.niceUrlDecode( oRequest.params.page );
 		oResponse.locals.content = "index";
 	}
 
@@ -81,8 +81,8 @@ exports.addViewParams = function( oRequest, oResponse, fNext )
 	*/
 	else
 	{
-		oResponse.locals.page = decodeURIComponent( oRequest.params.page );
-		oResponse.locals.content = decodeURIComponent( oRequest.params.content );
+		oResponse.locals.page = tools.niceUrlDecode( oRequest.params.page );
+		oResponse.locals.content = tools.niceUrlDecode( oRequest.params.content );
 	}
 
 	fNext();

@@ -1,6 +1,7 @@
 var fs = require( "fs" );
 var path = require( "path" );
 var hbs = require( 'hbs' );
+var tools = require( './tools.js' );
 
 /**
 * Synchronously reads a file in the template folder
@@ -28,5 +29,5 @@ exports.template = function( sPath, vData )
 */
 exports.toURL = function( sInput )
 {
-	return encodeURIComponent( sInput );
+	return tools.niceUrlEncode( sInput );
 };

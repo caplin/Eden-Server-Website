@@ -48,7 +48,7 @@ exports.getDirContents = function( sPath, fCallback, bSkipIndex )
 *
 * Only calls the callback on success
 *
-* @param {express.Response} oResponse
+* @para m {express.Response} oResponse
 * @param {FUNCTION} fCallback Will be called with sContent, won't be called if in error
 */
 exports.loadContent = function( oResponse, fCallback )
@@ -75,4 +75,42 @@ exports.loadContent = function( oResponse, fCallback )
 	};
 
 	fs.readFile( sPath, "utf8", fOnLoad );
+};
+
+var pUrlReplacements = [
+	[ /\s/g, "_", /_/g, " " ]
+];
+
+/**
+* URL encodes strings in a more human readable
+* way than encodeURI or encodeURIcomponent does
+*
+* @param {STRING} sInput
+* @return {STRING} sUrlComponent
+*/
+exports.niceUrlEncode = function( sInput )
+{
+	for( var i = 0; i < pUrlReplacements.length; i++ )
+	{
+		sInput = sInput.replace( pUrlReplacements[ i ][ 0 ], pUrlReplacements[ i ][ 1 ] );
+	}
+
+	return sInput;
+};
+
+/**
+* Decodes strings that have been encoded by
+* niceUrlEncode
+*
+* @param {STRING} sUrlComponent
+* @return {STRING} sDecodedString
+*/
+exports.niceUrlDecode = function( sInput )
+{
+	for( var i = pUrlReplacements.length - 1; i >= 0; i-- )
+	{
+		sInput = sInput.replace( pUrlReplacements[ i ][ 2 ], pUrlReplacements[ i ][ 3 ] );
+	}
+
+	return sInput;
 };
