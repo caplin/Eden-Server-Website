@@ -32,9 +32,17 @@ tri.config = {
 
 	/**
 	* Determines how far (on average)
-	* every triangle is randomly rotatet
+	* every triangle is randomly rotated
 	*
 	* @param {FLOAT} rotationOffset in radians
 	*/
-	rotationOffset: 0.1
+	rotationOffset: 0.1,
+
+	/**
+	* Determines the total span of a triangles rotation
+	* relative to the mouse position
+	*
+	* @param {FLOAT} rotationSpan in radians
+	*/
+	rotationSpan: 0.2
 };

@@ -66,12 +66,20 @@ tri.Scene = function( eContainer )
 	* Start the animation loop
 	*/
 	this._render();
+
+	window.addEventListener( "mousemove", this._movePointLight.bind( this ), false );
 };
 
 tri.Scene.prototype._render = function()
 {
 	this._oRenderer.render( this._oScene, this._oCamera );
 	requestAnimationFrame( this._render.bind( this ) );
+};
+
+tri.Scene.prototype._movePointLight = function( oEvent )
+{
+	this._oPointLight.position.x = ( this._nVisibleWidth / -2 ) + ( ( this._eContainer.offsetLeft + oEvent.screenX ) / this._nVisibletoActual );
+	this._oPointLight.position.y = ( this._nVisibleHeight / 2 ) - ( ( this._eContainer.offsetTop + oEvent.screenY ) / this._nVisibletoActual );
 };
 
 tri.Scene.prototype._createTriangles = function()
@@ -100,6 +108,4 @@ tri.Scene.prototype._createTriangles = function()
 			this._oScene.add( oTriangleDown.getMesh() );
 		}
 	}
-
-
 };

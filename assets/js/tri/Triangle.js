@@ -60,9 +60,17 @@ tri.Triangle = function( nWidth, nHeight, nPosX, nPosY, bPointsDown )
 	this._oMesh.rotation.x = this._nRotationOffsetX;
 	this._oMesh.rotation.y = this._nRotationOffsetY;
 	this._oMesh.rotation.z = bPointsDown ? Math.PI : 0;
+
+	window.addEventListener( "mousemove", this._adjustRotation.bind( this ), false );
 };
 
 tri.Triangle.prototype.getMesh = function()
 {
 	return this._oMesh;
+};
+
+tri.Triangle.prototype._adjustRotation = function( oEvent )
+{
+	this._oMesh.rotation.x = this._nRotationOffsetX + tri.config.rotationSpan * ( oEvent.screenX / window.innerWidth );
+	this._oMesh.rotation.y = this._nRotationOffsetX + tri.config.rotationSpan * ( oEvent.screenY / window.innerHeight );
 };
