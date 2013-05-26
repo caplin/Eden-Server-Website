@@ -15,7 +15,12 @@ exports.CONFIG = {
 	* mode
 	*/
 	jsFiles: [
-		"/assets/js/thirdparty/three.js"
+		"/assets/js/thirdparty/three.js",
+		"/assets/js/tri/namespace.js",
+		"/assets/js/tri/config.js",
+		"/assets/js/tri/Triangle.js",
+		"/assets/js/tri/Scene.js",
+		"/assets/js/start.js"
 	],
 
 	/**
