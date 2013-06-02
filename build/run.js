@@ -73,13 +73,27 @@ app.get( "/:page/:content", tasks.addViewParams, tasks.loadContent, tasks.addInd
 */
 app.get( "/favicon.ico", tasks.sendFavicon );
 
+
+var fOnReady = function()
+{
+	/**
+	* and that's it...
+	*/
+	console.log( ( "Server running. Access the page at localhost:" + CONF.port ).green );
+
+	/**
+	* If the script is called with node run.js build, create static files and store them in the output folder
+	*/
+	if( process.argv[ 2 ] === "build" )
+	{
+		require( "./src/build.js" ).createStaticFiles( CONF.outputFolder );
+	}
+};
+
 /**
 * Start the app on port 3000
 */
-app.listen( CONF.port );
+app.listen( CONF.port, fOnReady );
 
-/**
-* and that's it...
-*/
-console.log( ( "Server running. Access the page at localhost:" + CONF.port ).green );
+
 

@@ -16,9 +16,11 @@ exports.CONFIG = {
 	*/
 	jsFiles: [
 		"/assets/js/thirdparty/three.js",
+		"/assets/js/thirdparty/gui.js",
 		"/assets/js/tri/namespace.js",
 		"/assets/js/tri/config.js",
 		"/assets/js/tri/Triangle.js",
+		"/assets/js/tri/Web.js",
 		"/assets/js/tri/Scene.js",
 		"/assets/js/start.js"
 	],
@@ -51,6 +53,18 @@ exports.CONFIG = {
 	* for content files
 	*/
 	contentFileExt: ".md",
+
+	/**
+	* The file extension
+	* for files within the pages
+	* folder
+	*/
+	pagesFileExt: ".html",
+
+	/**
+	* The folder that the flat files will be written to
+	*/
+	outputFolder: "../output/",
 
 	/**
 	* The port the development server
