@@ -2,12 +2,18 @@
 
 {{template "header.html"}}
 
-{{template "toc.html" this}}
+<div class="container">
 
-<div id="mainContent">
-	{{content}}
+	<div class="row-fluid">
+		<div class="span3">{{template "toc.html" this}}</div>
+		<div class="span6">
+			{{content}}
+			<div id="disqus_thread"></div>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div>
+	</div>
+
+	{{template "footer.html" this}}
+
 </div>
-
-{{template "footer.html" this}}
-
-

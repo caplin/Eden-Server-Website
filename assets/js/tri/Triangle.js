@@ -49,19 +49,8 @@ tri.Triangle = function( nWidth, nHeight, nPosX, nPosY, bPointsDown )
 	this._oGeometry.computeCentroids();
 	this._oGeometry.computeVertexNormals();
 
-	var sUrl = "/assets/img/green_grass_blue_sky.jpeg";
-
-	var pUrls = [ sUrl, sUrl, sUrl, sUrl, sUrl, sUrl ];
-
-	//var oTextureCube = THREE.ImageUtils.loadTextureCube( pUrls, new THREE.CubeRefractionMapping() );
-	//this._oMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } )
-	this._oMaterial = new THREE.MeshPhongMaterial({
-		color: 0xffffff,
-		opacity: 0.3,
-		refractionRatio: 0.98,
-		reflectivity:0.9
-	});
-	//this._oMaterial = new THREE.MeshLambertMaterial( { color: 0xffffff } );
+	//this._oMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+	this._oMaterial = new THREE.MeshLambertMaterial( { color: 0xffffff } );
 
 	this._oMesh = new THREE.Mesh( this._oGeometry, this._oMaterial );
 
@@ -72,19 +61,12 @@ tri.Triangle = function( nWidth, nHeight, nPosX, nPosY, bPointsDown )
 	this._oMesh.rotation.y = this._nRotationOffsetY;
 	this._oMesh.rotation.z = bPointsDown ? Math.PI : 0;
 
-	this._fAdjustRotation = this._adjustRotation.bind( this );
-
-	window.addEventListener( "mousemove", this._fAdjustRotation, false );
+	window.addEventListener( "mousemove", this._adjustRotation.bind( this ), false );
 };
 
 tri.Triangle.prototype.getMesh = function()
 {
 	return this._oMesh;
-};
-
-tri.Triangle.prototype.destroy = function()
-{
-	window.removeEventListener( "mousemove", this._fAdjustRotation, false );
 };
 
 tri.Triangle.prototype._adjustRotation = function( oEvent )

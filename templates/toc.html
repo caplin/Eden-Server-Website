@@ -1,16 +1,21 @@
-<ul id="toc">
-	{{#each index}}
-		<li>
-			<a href="/{{../page}}/{{file}}" title="{{title}}">{{this.title}}</a>
-			{{#if content}}
-				<ul>
-					{{#each content}}
-						<li>
-							<a href="/{{../../../page}}/{{../file}}#{{toURL this}}">{{this}}</a>
-						</li>
-					{{/each}}
-				</ul>
-			{{/if}}
-		</li>
-	{{/each}}
-</ul>
+<div class="well sidebar-nav">
+
+	<input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" style="width: 90%; padding: 2px; border: 1px solid #AAA; margin: 0px; height: auto; outline: none; background-color: rgb(255, 255, 255);" dir="ltr" spellcheck="false" placeholder="search API Documentation">
+
+	<ul id="toc" class="nav nav-list">
+		{{#each index}}
+			<li class="nav-header">
+				<a href="/{{../page}}/{{file}}" title="{{title}}">{{this.title}}</a>
+				{{#if content}}
+					<ul>
+						{{#each content}}
+							<li>
+								<a href="/{{../../../page}}/{{../file}}#{{toURL this}}">{{this}}</a>
+							</li>
+						{{/each}}
+					</ul>
+				{{/if}}
+			</li>
+		{{/each}}
+	</ul>
+</div>

@@ -6,7 +6,10 @@ exports.CONFIG = {
 	* mode
 	*/
 	cssFiles: [
-		"/assets/css/main.css"
+		"/assets/css/bootstrap.min.css",
+		"/assets/css/bootstrap-responsive.min.css",
+		"/assets/css/main.css",
+		"/assets/css/prettify.css"
 	],
 
 	/**
@@ -16,11 +19,11 @@ exports.CONFIG = {
 	*/
 	jsFiles: [
 		"/assets/js/thirdparty/three.js",
-		"/assets/js/thirdparty/gui.js",
+		"/assets/js/thirdparty/lang-css.js",
+		"/assets/js/thirdparty/prettify.js",
 		"/assets/js/tri/namespace.js",
 		"/assets/js/tri/config.js",
 		"/assets/js/tri/Triangle.js",
-		"/assets/js/tri/Web.js",
 		"/assets/js/tri/Scene.js",
 		"/assets/js/start.js"
 	],

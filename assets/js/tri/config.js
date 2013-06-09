@@ -19,7 +19,7 @@ tri.config = {
 	*
 	* @param {HEX} pointLightColor
 	*/
-	pointLightColor: 0xeeeeff,
+	pointLightColor: 0xff2200,
 
 	/**
 	* Determines the color of the diffuse
@@ -44,12 +44,5 @@ tri.config = {
 	*
 	* @param {FLOAT} rotationSpan in radians
 	*/
-	rotationSpan: 0.2,
-
-	/**
-	* The interval between the creation of each triangle
-	*
-	* @param {INT} triangleCreationInterval in milliseconds
-	*/
-	triangleCreationInterval: 10
+	rotationSpan: 0.2
 };

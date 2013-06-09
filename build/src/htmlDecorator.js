@@ -1,5 +1,6 @@
 var tools = require( "./tools.js" );
 
+
 exports.h2 = function( sSearchResult, sTextContent, nIndex, sFullTest )
 {
 	var pHtml = [
@@ -8,6 +9,17 @@ exports.h2 = function( sSearchResult, sTextContent, nIndex, sFullTest )
 						sTextContent,
 					'</a>',
 				'</h2>'
+				];
+
+	return pHtml.join( "" );
+};
+
+exports.pre = function( sSearchResult, sTextContent, nIndex, sFullTest )
+{
+	var pHtml = [
+				'<pre class="prettyprint">',
+					sTextContent,
+				'</pre>'
 				];
 
 	return pHtml.join( "" );

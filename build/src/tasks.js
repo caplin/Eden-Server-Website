@@ -12,11 +12,28 @@ exports.mdToData = function( oRequest, oResponse, fNext )
 {
 	var fOnContent = function( sContent )
 	{
-		var pSegments = marked( sContent ).split( /<\/*h[1|2]>/ );
+		var pSegments = marked( sContent ).split( /<\/*h[1|2]>/ ), sKey;
 
 		for( var i = 1; i < pSegments.length; i+=2 )
 		{
-			oResponse.locals[ pSegments[ i ].trim().replace( " ", "_" ) ] =
+			/**
+			* This creates a key that can be used as a Handlebar
+			* template key to access the title
+			* and content of a paragraph
+			*
+			* The rules are:
+			* 1. replace all the formatted html special chars with _ (for example &#39; to _)
+			* 2. replace all spaces with _
+			* 3. remove all the remaining characters like ?
+			*/
+			sKey = pSegments[ i ]
+				.trim()
+				.replace(/&#\w+;\s*/gi, '_')
+				.replace(/[\ ]/gi, '_')
+				.replace(/\W/gi, '')
+				.toLowerCase();
+
+			oResponse.locals[ sKey ] =
 			{
 				title: new hbs.handlebars.SafeString( pSegments[ i ].trim() ),
 				content: new hbs.handlebars.SafeString( pSegments[ i + 1 ].trim() )
@@ -40,7 +57,7 @@ exports.loadContent = function( oRequest, oResponse, fNext )
 
 		for( var sTagName in htmlDecorator )
 		{
-			oRegExp = new RegExp( "<" + sTagName + ">(.*)<\/" + sTagName + ">", "g" );
+			oRegExp = new RegExp( "<" + sTagName + ">(.*?)<\/" + sTagName + ">", "g" );
 			sHtml = sHtml.replace( oRegExp, htmlDecorator[ sTagName ] );
 		}
 

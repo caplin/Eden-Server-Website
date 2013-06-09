@@ -1,0 +1,40 @@
+﻿Revert "Changes by Lucian"
+
+This reverts commit afba95245415a1ce539df9b49612d69c0153f046.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	deleted:    assets/css/bootstrap-responsive.min.css
+#	deleted:    assets/css/bootstrap.min.css
+#	modified:   assets/css/main.css
+#	deleted:    assets/css/prettify.css
+#	deleted:    assets/img/caplinlabslogo.png
+#	deleted:    assets/img/glyphicons-halflings-white.png
+#	deleted:    assets/img/glyphicons-halflings.png
+#	modified:   assets/js/start.js
+#	deleted:    assets/js/thirdparty/bootstrap.min.js
+#	deleted:    assets/js/thirdparty/lang-css.js
+#	deleted:    assets/js/thirdparty/prettify.js
+#	deleted:    assets/js/thirdparty/run_prettify.js
+#	modified:   build/src/htmlDecorator.js
+#	modified:   build/src/tools.js
+#	deleted:    index.html
+#	deleted:    output/docs/edenjson/index.html
+#	deleted:    output/docs/index.html
+#	deleted:    output/docs/jsClient/index.html
+#	deleted:    output/docs/module/index.html
+#	deleted:    output/examples/index.html
+#	deleted:    output/index.html
+#	modified:   pages/docs.html
+#	modified:   pages/index.html
+#	deleted:    pages/jsClient.html
+#	modified:   templates/footer.html
+#	modified:   templates/headSection.html
+#	modified:   templates/header.html
+#	modified:   templates/toc.html
+#
+
