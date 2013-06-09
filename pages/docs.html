@@ -1,1 +1,13 @@
-<h2>Hey {{firstname}}</h2>
+{{template "headSection.html" this}}
+
+{{template "header.html"}}
+
+{{template "toc.html" this}}
+
+<div id="mainContent">
+	{{content}}
+</div>
+
+{{template "footer.html" this}}
+
+

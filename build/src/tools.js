@@ -48,7 +48,7 @@ exports.getDirContents = function( sPath, fCallback, bSkipIndex )
 *
 * Only calls the callback on success
 *
-* @param {express.Response} oResponse
+* @para m {express.Response} oResponse
 * @param {FUNCTION} fCallback Will be called with sContent, won't be called if in error
 */
 exports.loadContent = function( oResponse, fCallback )
