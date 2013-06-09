@@ -104,3 +104,20 @@ a:active,a:target{
 	margin-top: 7px;
 	margin-right: 27px;
 }
+table.args{
+	margin-bottom: 14px;
+	width: 100%;
+}
+table.args td{
+	padding: 2px;
+	border-bottom: 1px solid #ccc;
+}
+
+table.args td.argument{
+	font-weight: bold;
+	width: 20%;
+}
+
+table.args td.type{
+	width: 30%;
+}
