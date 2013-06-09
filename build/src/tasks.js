@@ -57,7 +57,7 @@ exports.loadContent = function( oRequest, oResponse, fNext )
 
 		for( var sTagName in htmlDecorator )
 		{
-			oRegExp = new RegExp( "<" + sTagName + ">(.*?)<\/" + sTagName + ">", "g" );
+			oRegExp = new RegExp( "<" + sTagName + ">([^]*?)<\/" + sTagName + ">", "g" );
 			sHtml = sHtml.replace( oRegExp, htmlDecorator[ sTagName ] );
 		}
 
@@ -177,6 +177,8 @@ exports.addIndex = function( oRequest, oResponse, next )
 				}
 			}
 		}
+
+		pResult.push( mEntry );
 
 		oResponse.locals.index = pResult;
 
