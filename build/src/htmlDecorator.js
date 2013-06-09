@@ -1,13 +1,24 @@
 var tools = require( "./tools.js" );
 
-exports.h2 = function( sSearchResult, sTextContent, nIndex, sFullTest )
+exports.h3 = function( sSearchResult, sTextContent, nIndex, sFullTest )
 {
 	var pHtml = [
-				'<h2>',
+				'<h3>',
 					'<a name="', tools.niceUrlEncode( sTextContent ), '">',
 						sTextContent,
 					'</a>',
-				'</h2>'
+				'</h3>'
+				];
+
+	return pHtml.join( "" );
+};
+
+exports.pre = function( sSearchResult, sTextContent, nIndex, sFullTest )
+{
+	var pHtml = [
+				'<pre class="prettyprint">',
+					sTextContent,
+				'</pre>'
 				];
 
 	return pHtml.join( "" );

@@ -1,0 +1,16 @@
+{{template "headSection.html" this}}
+
+{{template "header.html"}}
+
+<div class="container">
+
+	<div class="row-fluid">
+		<div class="span3">{{template "toc.html" this.parent}}</div>
+		<div class="span6">
+			{{content}}
+		</div>
+	</div>
+
+	{{template "footer.html" this}}
+
+</div>
