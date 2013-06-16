@@ -171,7 +171,7 @@ var fTokenizeConfigFile = function( sInput )
 		*/
 		else
 		{
-			mEntry.code += pLines[ i ] + "\n";
+			mEntry.code += pLines[ i ].replace( "	", "" ) + "\n";
 		}
 
 		if( bLineWithKey === true && sLine.indexOf( ":" ) !== -1 )
